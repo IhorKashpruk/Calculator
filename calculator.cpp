@@ -4,6 +4,9 @@ const std::string operation_symbols = "/*^#";
 const std::vector<std::string> invalid_words{
   "nn", ".", "l", "u", "oo", "()", "b)", "o)", "(o"
 };
+const std::map<std::string, std::string> key_words{
+    {"sqrt", "#"}
+};
 
 SYMBOL Calculator::whatIsThis(const char s)
 {
@@ -22,21 +25,37 @@ SYMBOL Calculator::whatIsThis(const char s)
 
 }
 
-void Calculator::verify(std::string &str)
+bool Calculator::verify(std::string &&str)
 {
+    if(str.empty()) return false;
+    bool resoult = true;
     for(auto& it: invalid_words){
         size_t pos = 0;
         while((pos = str.find(it, pos)) != std::string::npos){
+            resoult = false;
             std::cout << "Invalid symbol: " << pos << " -> " << str.substr(pos, it.size()) << std::endl;
             pos += it.size();
         }
     }
 
+    if(resoult != false){
+        if(std::count(str.begin(), str.end(), '(') !=
+                std::count(str.begin(), str.end(), ')')) resoult = false;
+        if(str[0] == 'o') resoult = false;
+        if(*str.rbegin() == 'o') resoult = false;
+    }
+    return resoult;
 }
 
-std::string Calculator::simplify(const std::string &str)
+std::string Calculator::simplify(const std::string &&str)
 {
     std::string resoult_str(str);
+    std::for_each(key_words.begin(), key_words.end(), [&resoult_str](auto& pair){
+        size_t pos;
+        while((pos = resoult_str.find(pair.first)) != std::string::npos){
+            resoult_str.replace(pos, pair.first.size(), pair.second);
+        }
+    });
     std::for_each(resoult_str.begin(), resoult_str.end(), [](char&s){ if(s != 'n') s = static_cast<char>(whatIsThis(s));});
     return resoult_str;
 }
@@ -93,6 +112,20 @@ Calculator::vector_pair Calculator::findNumbers(const std::string &str)
         myStruct.push_back(std::make_pair(start_pos, resoult_str.size()-start_pos));
     }
     return myStruct;
+}
+
+bool Calculator::fullVerification(const std::string &str)
+{
+    return Calculator::verify(Calculator::simplify(Calculator::simplifyNumbers(str, Calculator::findNumbers(str))));
+}
+
+Number Calculator::calculate(const std::string &str)
+{
+    if(!Calculator::fullVerification(str)){
+        // throw verification error
+        throw std::runtime_error("class Calculator: Error to vecification!\n");
+    }
+    return Expression(nullptr, str).calculate();
 }
 
 Calculator::Calculator()

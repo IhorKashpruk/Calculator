@@ -8,20 +8,6 @@
 #include <vector>
 #include <cctype>
 
-//class Expression : public std::enable_shared_from_this<Expression>
-//{
-//public:
-//    std::vector<std::string> numbers;
-//    std::vector<char> operations;
-//    std::weak_ptr<Expression> parent;
-//    std::vector<std::shared_ptr<Expression>> next;
-//public:
-//    Expression(std::weak_ptr<Expression> parent_);
-//    std::shared_ptr<Expression> addOperation(const char s);
-//    std::shared_ptr<Expression> addNumber(const std::string& str);
-
-//    std::string toString() const;
-//};
 class Expression;
 
 typedef std::shared_ptr<Expression> expr_ptr;

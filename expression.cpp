@@ -1,42 +1,6 @@
 #include "expression.h"
 
-//Expression::Expression(std::weak_ptr<Expression> parent_) : parent(parent_)
-//{
-
-//}
-
-//std::shared_ptr<Expression> Expression::addOperation(const char s)
-//{
-//    if(s == '('){
-//        operations.push_back('&');
-//        next.push_back(std::make_shared<Expression>(shared_from_this()));
-//        return *next.rbegin();
-//    }
-//    if(s == ')')
-//        return parent.lock();
-//    operations.push_back(s);
-//    return shared_from_this();
-//}
-
-//std::shared_ptr<Expression> Expression::addNumber(const std::string &str)
-//{
-//    numbers.push_back(str);
-//    return shared_from_this();
-//}
-
-//std::string Expression::toString() const
-//{
-//    std::string result_str;
-//    std::for_each(numbers.begin(), numbers.end(), [&result_str](const std::string& str){ result_str.append(str);});
-//    std::for_each(operations.begin(), operations.end(), [&result_str](const char& str){ result_str.insert(result_str.end(), str);});
-//    return result_str;
-//}
-
-
-Expression::Expression(Expression *parent_) : parent(parent_), str("")
-{
-
-}
+Expression::Expression(Expression *parent_) : parent(parent_), str("") {}
 
 Expression::Expression(Expression *parent_, const std::string &str_) : parent(parent_), str("")
 {
@@ -114,8 +78,6 @@ Number Expression::calculate()
     for(int i = 0; i < char_pair.size(); i++){
         operArray.addOperation(OperationFactory::make_operator(char_pair[i], numbers[i], numbers[i+1]));
     }
-
-
 
     return operArray.calculate();
 }

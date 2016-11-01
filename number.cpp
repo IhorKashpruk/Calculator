@@ -12,46 +12,22 @@ Number::Number(const std::string &number, bool validate_on)
     ss >> value;
 }
 
-Number::Number()
-{
-    value = 0.0;
-}
+Number::Number() : value(0.0) {}
 
-Number::Number(const Number &obj)
-{
-    this->value = obj.getValue();
-}
+Number::Number(const Number &obj) { this->value = obj.getValue(); }
 
-Number::Number(const double value_)
-{
-    value = value_;
-}
+Number::Number(const double value_) { value = value_; }
 
 
-double Number::getValue() const
-{
-    return value;
-}
+double Number::getValue() const { return value; }
 
-Number Number::operator+(const Number &obj)
-{
-    return (this->value+obj.getValue());
-}
+Number Number::operator+(const Number &obj) { return (this->value+obj.getValue()); }
 
-Number Number::operator-(const Number &obj)
-{
-    return (this->value-obj.getValue());
-}
+Number Number::operator-(const Number &obj) { return (this->value-obj.getValue()); }
 
-Number Number::operator*(const Number &obj)
-{
-    return (this->value*obj.getValue());
-}
+Number Number::operator*(const Number &obj) { return (this->value*obj.getValue()); }
 
-Number Number::operator/(const Number &obj)
-{
-    return (this->value/obj.getValue());
-}
+Number Number::operator/(const Number &obj) { return (this->value/obj.getValue()); }
 
 Number &Number::operator =(const Number &obj)
 {
@@ -61,10 +37,7 @@ Number &Number::operator =(const Number &obj)
     return *this;
 }
 
-bool Number::operator ==(double number)
-{
-    return value == number;
-}
+bool Number::operator ==(double number) { return value == number; }
 
 bool Number::validate(const std::string& number)
 {
