@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     std::cin >> str;
     while(str != "quit"){
         try {
-            std::cout << "Resolt: " << Calculator::calculate(str) << std::endl
+            std::cout << "Result: " << Calculator::calculate(str) << std::endl
                       << "Enter expression: ";
             std::cin >> str;
 
