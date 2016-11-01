@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
 
     std::string str;
-    std::cout << "Enter expression: ";
+    std::cout << "\nEnter expression('quit' to exit): ";
     std::cin >> str;
     while(str != "quit"){
         try {
