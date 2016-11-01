@@ -3,7 +3,6 @@
 #include "number.h"
 #include <sstream>
 #include "operation.h"
-#include <unistd.h>
 
 int main(int argc, char *argv[])
 {
