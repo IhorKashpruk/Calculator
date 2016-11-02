@@ -1,7 +1,7 @@
 #ifndef OPERATION_H
 #define OPERATION_H
 #include <memory>
-#include <exception>
+#include <stdexcept>
 #include <cmath>
 #include <vector>
 #include "number.h"
