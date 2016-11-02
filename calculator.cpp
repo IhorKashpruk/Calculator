@@ -2,7 +2,7 @@
 
 const std::string operation_symbols = "/*^#";
 const std::vector<std::string> invalid_words{
-  "nn", ".", "l", "u", "oo", "()", "b)", "o)", "(o"
+  "nn", ".", "l", "u", "oo", "()", "b)", "o)", "(o", "n(", ")n"
 };
 const std::map<std::string, std::string> key_words{
     {"sqrt", "#"}
@@ -25,7 +25,7 @@ SYMBOL Calculator::whatIsThis(const char s)
 
 }
 
-bool Calculator::verify(std::string &&str)
+bool Calculator::verify(std::string &&str, const std::string& base_str, const vector_pair& vecor_p)
 {
     if(str.empty()) return false;
     bool resoult = true;
@@ -116,7 +116,7 @@ Calculator::vector_pair Calculator::findNumbers(const std::string &str)
 
 bool Calculator::fullVerification(const std::string &str)
 {
-    return Calculator::verify(Calculator::simplify(Calculator::simplifyNumbers(str, Calculator::findNumbers(str))));
+    return Calculator::verify(Calculator::simplify(Calculator::simplifyNumbers(str, Calculator::findNumbers(str))), str, Calculator::findNumbers(str));
 }
 
 Number Calculator::calculate(const std::string &str)

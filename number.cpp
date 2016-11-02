@@ -16,18 +16,23 @@ Number::Number() : value(0.0) {}
 
 Number::Number(const Number &obj) { this->value = obj.getValue(); }
 
-Number::Number(const double value_) { value = value_; }
+Number::Number(const type_of_value value_) { value = value_; }
+
+Number::Number(const double obj)
+{
+    value = obj;
+}
 
 
-double Number::getValue() const { return value; }
+type_of_value Number::getValue() const { return value; }
 
-Number Number::operator+(const Number &obj) { return (this->value+obj.getValue()); }
+Number Number::operator+(const Number &obj) { return Number(this->value+obj.getValue()); }
 
-Number Number::operator-(const Number &obj) { return (this->value-obj.getValue()); }
+Number Number::operator-(const Number &obj) { return Number(this->value-obj.getValue()); }
 
-Number Number::operator*(const Number &obj) { return (this->value*obj.getValue()); }
+Number Number::operator*(const Number &obj) { return Number(this->value*obj.getValue()); }
 
-Number Number::operator/(const Number &obj) { return (this->value/obj.getValue()); }
+Number Number::operator/(const Number &obj) { return Number(this->value/obj.getValue()); }
 
 Number &Number::operator =(const Number &obj)
 {
@@ -37,7 +42,13 @@ Number &Number::operator =(const Number &obj)
     return *this;
 }
 
-bool Number::operator ==(double number) { return value == number; }
+Number &Number::operator =(const double obj)
+{
+    value = obj;
+    return *this;
+}
+
+bool Number::operator ==(type_of_value number) { return value == number; }
 
 bool Number::validate(const std::string& number)
 {

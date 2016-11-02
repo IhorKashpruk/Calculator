@@ -1,11 +1,12 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
-#include "number.h"
-#include "expression.h"
 #include <iostream>
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <stdexcept>
+#include "number.h"
+#include "expression.h"
 
 /*Order of operations:  exp:    32*1-23-sqrt9+2^2
 1) findNumbers(...)     ->      return vector<pair<size_t,size_t>> numer positions
@@ -34,7 +35,7 @@ class Calculator
 typedef std::vector<std::pair<size_t, size_t>> vector_pair;
 public:
     static SYMBOL whatIsThis(const char s);
-    static bool verify(std::string&& str);
+    static bool verify(std::string&& str, const std::string &base_str, const vector_pair& vector_p);
     static std::string simplify(const std::string&& str);
     static std::string simplifyNumbers(const std::string& str, const vector_pair& myStruct);
     static vector_pair findNumbers(const std::string& str);

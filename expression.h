@@ -1,12 +1,12 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 
-#include "calculator.h"
-#include "operation.h"
 #include <iostream>
 #include <memory>
 #include <vector>
 #include <cctype>
+#include "calculator.h"
+#include "operation.h"
 
 class Expression;
 
