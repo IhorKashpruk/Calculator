@@ -1,13 +1,15 @@
+#include <iostream>
+#include <sstream>
 #include "calculator.h"
 #include "expression.h"
 #include "number.h"
-#include <sstream>
 #include "operation.h"
 
 int main(int argc, char *argv[])
 {
 
     std::string str;
+    std::cout.precision(std::numeric_limits<boost::multiprecision::cpp_dec_float_50>::digits10);
     std::cout << "\nEnter expression('quit' to exit): ";
     std::cin >> str;
     while(str != "quit"){
