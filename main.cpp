@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 #include "calculator.h"
 #include "expression.h"
 #include "number.h"
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
 {
 
     std::string str;
-    std::cout.precision(std::numeric_limits<boost::multiprecision::cpp_dec_float_50>::digits10);
+    std::cout << std::setprecision(15);
     std::cout << "\nEnter expression('quit' to exit): ";
     std::cin >> str;
     while(str != "quit"){

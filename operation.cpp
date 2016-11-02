@@ -51,11 +51,11 @@ Number operator_share::calculate(){
 
 // Class operator_pow
 operator_pow::operator_pow(const Number &l, const Number &r) : Operation(l, r, 5){}
-Number operator_pow::calculate(){ return Number(pow(left.getValue(), right.getValue())); }
+Number operator_pow::calculate(){ return pow(left.getValue(), right.getValue()); }
 
 // Class operator_sqrt
 operator_sqrt::operator_sqrt(const Number &o) : Operation(Number(0.0), o, 5){}
-Number operator_sqrt::calculate(){ return Number(sqrt(right.getValue())); }
+Number operator_sqrt::calculate(){ return sqrt(right.getValue()); }
 
 // Class OperatorArray
 void OperationArray::addOperation(Operation *o){ values.push_back(std::shared_ptr<Operation>(o));}
